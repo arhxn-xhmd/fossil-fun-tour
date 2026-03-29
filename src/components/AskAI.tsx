@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { Mic, MicOff, Send, Volume2, VolumeX, Loader2, Trash2 } from "lucide-react";
 import { speakText, stopSpeaking } from "@/lib/speakText";
 import ReactMarkdown from "react-markdown";
-import { supabase } from "@/integrations/supabase/client";
+
 
 type Msg = { role: "user" | "assistant"; content: string };
 
