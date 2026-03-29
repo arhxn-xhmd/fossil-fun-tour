@@ -63,7 +63,7 @@ const Index = () => {
       <footer className="border-t border-border py-8 text-center">
         <p className="font-body text-sm text-muted-foreground">
           Ancient Earth Museum — An interactive learning experience about fossils & early humans
-          BY " ARHAAN AHMED "
+          BY ARHAAN AHMED 
         </p>
       </footer>
     </div>
