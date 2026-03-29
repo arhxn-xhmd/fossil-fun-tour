@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { quizQuestions } from "@/data/specimens";
 import { speakText } from "@/lib/speakText";
-import { CheckCircle, XCircle, RotateCcw, Volume2, Trophy } from "lucide-react";
+import { CheckCircle, XCircle, RotateCcw, Volume2, Trophy, BrainCircuit, HelpCircle } from "lucide-react";
+import AskAI from "@/components/AskAI";
+
+type Tab = "quiz" | "ask";
 
 const QuizSection = () => {
+  const [tab, setTab] = useState<Tab>("quiz");
   const [current, setCurrent] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [answered, setAnswered] = useState(false);
