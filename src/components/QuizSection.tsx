@@ -74,9 +74,37 @@ const QuizSection = () => {
         >
           Test Your Knowledge
         </h2>
+
+        {/* Tab toggle */}
+        <div className="flex items-center justify-center gap-2 mt-6">
+          <button
+            onClick={() => setTab("quiz")}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-body text-sm font-semibold transition-all ${
+              tab === "quiz"
+                ? "bg-primary text-primary-foreground shadow-md"
+                : "bg-muted text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <HelpCircle className="w-4 h-4" />
+            Quiz
+          </button>
+          <button
+            onClick={() => setTab("ask")}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-body text-sm font-semibold transition-all ${
+              tab === "ask"
+                ? "bg-primary text-primary-foreground shadow-md"
+                : "bg-muted text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <BrainCircuit className="w-4 h-4" />
+            Ask AI
+          </button>
+        </div>
       </div>
 
-      <div className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+      {tab === "ask" ? (
+        <AskAI />
+      ) : (
         {/* Progress */}
         <div className="flex items-center justify-between mb-6">
           <span className="font-body text-sm text-muted-foreground">
