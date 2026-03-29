@@ -105,70 +105,72 @@ const QuizSection = () => {
       {tab === "ask" ? (
         <AskAI />
       ) : (
-        {/* Progress */}
-        <div className="flex items-center justify-between mb-6">
-          <span className="font-body text-sm text-muted-foreground">
-            Question {current + 1} of {quizQuestions.length}
-          </span>
-          <span className="font-body text-sm text-primary font-semibold">
-            Score: {score}
-          </span>
-        </div>
-        <div className="w-full h-1.5 bg-muted rounded-full mb-8">
-          <div
-            className="h-full bg-primary rounded-full transition-all duration-500"
-            style={{ width: `${((current + 1) / quizQuestions.length) * 100}%` }}
-          />
-        </div>
-
-        <h3
-          className="font-display text-xl sm:text-2xl font-bold text-foreground mb-8 cursor-pointer"
-          onClick={() => speakText(question.question)}
-        >
-          <Volume2 className="w-5 h-5 inline mr-2 text-primary" />
-          {question.question}
-        </h3>
-
-        <div className="space-y-3 mb-8">
-          {question.options.map((opt, idx) => {
-            let stateClass = "";
-            if (answered) {
-              if (idx === question.correct) stateClass = "correct";
-              else if (idx === selectedOption) stateClass = "wrong";
-            } else if (idx === selectedOption) {
-              stateClass = "selected";
-            }
-
-            return (
-              <button
-                key={idx}
-                onClick={() => handleAnswer(idx)}
-                className={`quiz-option w-full text-left flex items-center gap-3 ${stateClass}`}
-                disabled={answered}
-              >
-                <span className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-sm font-body font-bold shrink-0">
-                  {String.fromCharCode(65 + idx)}
-                </span>
-                {opt}
-                {answered && idx === question.correct && <CheckCircle className="w-5 h-5 text-green-500 ml-auto shrink-0" />}
-                {answered && idx === selectedOption && idx !== question.correct && <XCircle className="w-5 h-5 text-destructive ml-auto shrink-0" />}
-              </button>
-            );
-          })}
-        </div>
-
-        {answered && (
-          <div className="bg-muted rounded-xl p-4 mb-6">
-            <p className="font-body text-sm text-foreground/80">{question.explanation}</p>
+        <div className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+          {/* Progress */}
+          <div className="flex items-center justify-between mb-6">
+            <span className="font-body text-sm text-muted-foreground">
+              Question {current + 1} of {quizQuestions.length}
+            </span>
+            <span className="font-body text-sm text-primary font-semibold">
+              Score: {score}
+            </span>
           </div>
-        )}
+          <div className="w-full h-1.5 bg-muted rounded-full mb-8">
+            <div
+              className="h-full bg-primary rounded-full transition-all duration-500"
+              style={{ width: `${((current + 1) / quizQuestions.length) * 100}%` }}
+            />
+          </div>
 
-        {answered && (
-          <button onClick={handleNext} className="btn-explore w-full">
-            {current + 1 >= quizQuestions.length ? "See Results" : "Next Question"}
-          </button>
-        )}
-      </div>
+          <h3
+            className="font-display text-xl sm:text-2xl font-bold text-foreground mb-8 cursor-pointer"
+            onClick={() => speakText(question.question)}
+          >
+            <Volume2 className="w-5 h-5 inline mr-2 text-primary" />
+            {question.question}
+          </h3>
+
+          <div className="space-y-3 mb-8">
+            {question.options.map((opt, idx) => {
+              let stateClass = "";
+              if (answered) {
+                if (idx === question.correct) stateClass = "correct";
+                else if (idx === selectedOption) stateClass = "wrong";
+              } else if (idx === selectedOption) {
+                stateClass = "selected";
+              }
+
+              return (
+                <button
+                  key={idx}
+                  onClick={() => handleAnswer(idx)}
+                  className={`quiz-option w-full text-left flex items-center gap-3 ${stateClass}`}
+                  disabled={answered}
+                >
+                  <span className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-sm font-body font-bold shrink-0">
+                    {String.fromCharCode(65 + idx)}
+                  </span>
+                  {opt}
+                  {answered && idx === question.correct && <CheckCircle className="w-5 h-5 text-green-500 ml-auto shrink-0" />}
+                  {answered && idx === selectedOption && idx !== question.correct && <XCircle className="w-5 h-5 text-destructive ml-auto shrink-0" />}
+                </button>
+              );
+            })}
+          </div>
+
+          {answered && (
+            <div className="bg-muted rounded-xl p-4 mb-6">
+              <p className="font-body text-sm text-foreground/80">{question.explanation}</p>
+            </div>
+          )}
+
+          {answered && (
+            <button onClick={handleNext} className="btn-explore w-full">
+              {current + 1 >= quizQuestions.length ? "See Results" : "Next Question"}
+            </button>
+          )}
+        </div>
+      )}
     </section>
   );
 };
