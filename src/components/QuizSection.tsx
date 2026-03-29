@@ -67,7 +67,7 @@ const QuizSection = () => {
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
-      <div className="text-center mb-12">
+      <div className="text-center mb-8">
         <h2
           className="section-title cursor-pointer"
           onClick={() => speakText("Test your knowledge about fossils and early humans!")}
